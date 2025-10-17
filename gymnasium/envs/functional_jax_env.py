@@ -82,7 +82,7 @@ class FunctionalJaxEnv(gym.Env, Generic[StateType]):
         info = self.func_env.transition_info(self.state, action, next_state)
         self.state = next_state
 
-        return observation, float(reward), bool(terminated), False, info
+        return observation, jnp.array(reward, dtype=float), jnp.array(terminated, dtype=bool), False, info
 
     def render(self):
         """Returns the render state if `render_mode` is "rgb_array"."""
